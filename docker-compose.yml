@@ -7,7 +7,6 @@ services:
             dockerfile: ./docker/Dockerfile
         ports:
             - "80:80"
-            - "8080:8080"
             - "443:443"
         volumes:
             - ./public:/var/www/html/public
@@ -18,7 +17,7 @@ services:
             - app-network
 
     db:
-        image: mysql:8.0
+        image: mariadb
         container_name: zadarma_db
         restart: unless-stopped
         ports:
@@ -28,9 +27,9 @@ services:
             MYSQL_ROOT_PASSWORD: test
         volumes:
             - .docker/mysql/data:/var/lib/mysql
+        user: mysql
         networks:
             - app-network
-        command: mysqld --sql_mode="" --character-set-server=utf8 --collation-server=utf8_general_ci --innodb-flush-log-at-trx-commit=0
 
     adminer:
         image: adminer
@@ -41,6 +40,8 @@ services:
             - app-network
         ports:
             - "8081:8080"
+        links:
+            - db
 networks:
     app-network:
         driver: bridge
