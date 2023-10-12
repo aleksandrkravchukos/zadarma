@@ -17,7 +17,7 @@ services:
             - app-network
 
     db:
-        image: mariadb
+        image: mysql:5.7
         container_name: zadarma_db
         restart: unless-stopped
         ports:
