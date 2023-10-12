@@ -1,31 +1,32 @@
 <?php
 
-include_once __DIR__ . '/../layout/head.php'
+include_once 'header.php';
 ?>
+<body>
+<!--<div class="container">-->
+<!--    <h2>Ласкаво просимо, --><?php //echo $_SESSION['user']; ?><!--</h2>-->
+<!--    <a href="logout.php">Вийти</a>-->
+<!--</div>-->
 
 <body>
 
-<?php
-require_once __DIR__ . '/../scripts.php'
-?>
-
 <header class="bg-dark text-light text-center py-4">
-    <h1>Phone book login</h1>
+    <h1>Phone book</h1>
 </header>
 
+<!-- Рядок з двома колонками -->
 <div class="container mt-4">
     <div class="row">
+        <!-- Перша колонка для меню -->
+        <?php
+        include_once 'menu.php';
+//        include_once 'auth.php';
+        ?>
 
+        <!-- Друга колонка для вмісту -->
         <div class="col-md-9">
-            <h2>Login</h2>
-            <form action="/login.php" method="POST">
-                <label for="username">Email</label>
-                <input type="email" name="username" required>
-                <label for="password">Password</label>
-                <input type="password" name="password" required>
-                <a href="/login.php" class="btn btn-info" type="submit">Sign in</a>
-                <a href="register.php" class="btn btn-primary" type="submit">Register</a>
-            </form>
+            <h2>Заголовок Вмісту</h2>
+            <p>Тут може бути вміст вашої сторінки.</p>
         </div>
     </div>
 </div>
@@ -92,5 +93,15 @@ require_once __DIR__ . '/../scripts.php'
 <!---->
 <!--</div>-->
 
+<?php
+include_once 'scripts.php';
+?>
 </body>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+
 </html>

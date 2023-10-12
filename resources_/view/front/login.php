@@ -10,22 +10,35 @@ require_once __DIR__ . '/../scripts.php'
 ?>
 
 <header class="bg-dark text-light text-center py-4">
-    <h1>Phone book register</h1>
+    <h1>Phone book login</h1>
 </header>
 
 <div class="container mt-4">
     <div class="row">
 
-        <div class="col-md-9">
-            <h2>Register</h2>
+        <div class="col-md-3">
+        </div>
+
+        <div class="col-md-6">
+            <h2>Login</h2>
             <form action="/login.php" method="POST">
-                <label for="username">Email</label>
-                <input type="email" name="username" required>
-                <label for="password">Password</label>
-                <input type="password" name="password" required>
-                <a href="/login.php" class="btn btn-info" type="submit">Sign in</a>
-                <a href="register.php" class="btn btn-primary" type="submit">Register</a>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Login</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
             </form>
+        </div>
+        <div class="col-md-3">
         </div>
     </div>
 </div>

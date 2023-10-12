@@ -1,6 +1,6 @@
 <?php
 
-class PhoneBookController
+class PhoneBookController extends Controller
 {
     private $model;
 

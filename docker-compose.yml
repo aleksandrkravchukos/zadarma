@@ -10,7 +10,8 @@ services:
             - "8080:8080"
             - "443:443"
         volumes:
-            - ./src:/var/www/html
+            - ./public:/var/www/html/public
+            - ./src:/var/www/html/src
         depends_on:
             - db
         networks:

@@ -1,7 +1,7 @@
 FROM php:8.1-apache
 
 ENV APACHE_CONF_DIR=/etc/apache2 \
-    WORKING_DIR=/var/www/html
+    WORKING_DIR=/var/www/html/
 
 RUN apt-get update && apt-get install -y \
     libonig-dev \
@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR ${WORKING_DIR}
 
-#COPY ../src ${WORKING_DIR}
 COPY ./docker/apache2.conf ${APACHE_CONF_DIR}/apache2.conf
 COPY ./docker/default.conf ${APACHE_CONF_DIR}/sites-enabled/default.conf
 COPY ./docker/php.ini  ${PHP_CONF_DIR}/apache2/conf.d/custom.ini

@@ -10,11 +10,11 @@ class DashBoardController extends Controller
     public function index()
     {
         if (!isset($_SESSION['user'])) {
-            header('Location: ' . 'index.php');
+            header('Location: ' . '/index.php');
             exit;
         } else {
-            echo parent::getViewPath().'/dashboard.php';
-//            include parent::getViewPath().'/dashboard.php';
+            header('Location: ' . $this->getViewPath().'/dashboard.php');
+            exit();
         }
     }
 }
