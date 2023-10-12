@@ -9,11 +9,12 @@ class FrontController extends Controller
 
     public function index()
     {
+
         if (isset($_SESSION['user'])) {
             header('Location: ' . parent::getViewPath() . 'dashboard.php');
             exit;
         } else {
-            include __DIR__ . '/../resources/view/front/index.php';
+            include __DIR__.'/../resources/view/front/index.php';
         }
     }
 }
