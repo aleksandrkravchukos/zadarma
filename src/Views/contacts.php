@@ -159,8 +159,12 @@ include_once 'scripts.php';
       const tbody = table.querySelector('tbody');
       response.forEach(item => {
         const row = document.createElement('tr');
-        row.innerHTML = `<td>${item.name}</td><td>${item.last_name}</td><td>${item.phone}</td><td>${item.email}</td>`;
+        row.innerHTML = `<td><button class="btn btn-info contactModalButton" onclick="getContact(` + item.id + `)">${item.name}</button> </td><td>${item.last_name}</td><td>${item.phone}</td><td>${item.email}</td>`;
         tbody.appendChild(row);
+      });
+
+      $('.contactModalButton').on('click', function () {
+        $('#contactModal').modal('show');
       });
     })
       .fail(function (error) {
@@ -169,14 +173,24 @@ include_once 'scripts.php';
   }
 
   getContacts();
+
   document.getElementById('openModalButton').addEventListener('click', function () {
     $('#myModal').modal('show');
   });
 
+  function getContact(id) {
+    $.post('/contact/', {contactId: id}, function (response) {
+      console.log(response)
+    })
+      .fail(function (error) {
+        alert(error);
+      });
+  }
+
   function addContact() {
     var $form = $('#addContact');
     var formData = {};
-    $form.find('input').each(function() {
+    $form.find('input').each(function () {
       var $input = $(this);
       var id = $input.attr('id');
       var value = $input.val();
@@ -190,11 +204,11 @@ include_once 'scripts.php';
       $('#myModal').modal('hide');
     })
       .fail(function (error) {
-        console.error('Error:', error);
+        alert(error);
       });
   }
 
-  function updateContact(){
+  function updateContact() {
 
   }
 </script>
