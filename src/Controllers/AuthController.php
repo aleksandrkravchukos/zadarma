@@ -26,6 +26,7 @@ class AuthController extends Controller
     public function processLogin()
     {
         echo '<pre>';
+        print_r($_POST);
         print_r($_ENV);
         echo '</pre>';
         // Обработать отправленные данные для входа (POST)

@@ -1,9 +1,11 @@
 <?php
 
-$host = 'db';
-$database = 'zadarma';
-$username = 'root';
-$password = 'test';
+include_once '../src/bootstrap.php';
+
+$host = getenv('DB_HOST');
+$database = getenv('DB_NAME');;
+$username = getenv('DB_USER');;
+$password = getenv('DB_PASS');
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
@@ -27,7 +29,24 @@ try {
     $stmt->bindParam(':email', $newEmail, PDO::PARAM_STR);
     $stmt->bindParam(':password', $newPassword, PDO::PARAM_STR);
     $stmt->execute();
-    echo "User '$newUsername' added to the 'users' table.<br>";
+    echo "User '$newUsername' with email '$newEmail' added to the 'users' table.<br>";
+
+    $sql = "
+    CREATE TABLE IF NOT EXISTS contacts (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT,
+        name VARCHAR(50),
+        last_name VARCHAR(50),
+        email VARCHAR(100),
+        image VARCHAR(255),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+    ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    echo "Table 'contacts' created successfully.";
+
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
