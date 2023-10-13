@@ -9,6 +9,8 @@ class DashBoardController extends Controller
 
     public function index()
     {
+        echo 'DASH';
+        exit();
         if (!isset($_SESSION['user'])) {
             header('Location: /');
             exit;

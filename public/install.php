@@ -22,7 +22,7 @@ try {
 
     $newUsername = 'user';
     $newEmail = 'admin@admin.com';
-    $newPassword = password_hash('1', PASSWORD_BCRYPT);
+    $newPassword = hash('sha256', '1');
     $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':username', $newUsername, PDO::PARAM_STR);

@@ -1,8 +1,6 @@
 RewriteEngine On
 RewriteBase /
 
-# Redirect the root URL to index.php
 RewriteRule ^$ index.php [L]
-
-# Redirect /login to index.php
 RewriteRule ^login$ index.php [L]
+RewriteRule ^dashboard$ index.php [L]

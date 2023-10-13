@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
         <form action="/login" method="POST">
             <h2>Login</h2>
             <label for="username">Email</label>
-            <input type="email" name="username" required>
+            <input type="email" name="email" required>
             <label for="password">Password</label>
             <input type="password" name="password" required>
             <button type="submit">Sign in</button>

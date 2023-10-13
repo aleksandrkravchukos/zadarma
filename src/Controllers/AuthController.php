@@ -23,28 +23,18 @@ class AuthController extends Controller
         header('Location: /');
     }
 
-    public function processLogin()
+    public function processLogin(): void
     {
-        echo '<pre>';
-        print_r($_POST);
-        print_r($_ENV);
-        echo '</pre>';
-        // Обработать отправленные данные для входа (POST)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Обработать данные формы и выполнить вход
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            // Retrieve user data from the database based on the provided email
-//        $query = $this->db->prepare("SELECT * FROM users WHERE email = ?");
-//        $query->execute([$email]);
-//        $user = $query->fetch();
-//
-//        // Check if the user exists and the password is correct
-//        if ($user && password_verify($password, $user['password'])) {
-//            $_SESSION['user_id'] = $user['id'];
-//            return true;
-//        }
+            $email = $_POST['email'];
+            $password = hash('sha256', $_POST['password']);
+            $query = $this->pdo->prepare("SELECT * FROM users WHERE email = ? and password = ?");
+            $query->execute([$email, $password]);
+            $user = $query->fetch();
+            if ($user) {
+                $_SESSION['user'] = $user['id'];
+                header('Location: /dashboard');
+            }
         }
     }
 
@@ -56,7 +46,7 @@ class AuthController extends Controller
     public function registerUser($username = null, $email = null, $password = null)
     {
         // Hash the password
-        //$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        //$hashedPassword = hash('sha256',$password);
 
 //        // Insert the user into the database
 //        $query = $this->db->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
