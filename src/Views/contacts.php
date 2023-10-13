@@ -28,7 +28,7 @@ include_once 'header.php';
                 <th class="">Last name</th>
                 <th class="">Phone</th>
                 <th class="">E-mail</th>
-                <th class="">Delete</th>
+                <th class="">Action</th>
                 </thead>
                 <tbody id="tableBody">
                 </tbody>

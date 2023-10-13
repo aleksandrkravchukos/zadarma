@@ -25,10 +25,18 @@ class AuthController extends Controller
         }
     }
 
-    public function processRegistration(): bool
+    public function processRegistration()
     {
-        $hashedPassword = hash('sha256',$_POST['password']);
-        $query = $this->pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-        return $query->execute([$_POST['username'], $_POST['email'], $hashedPassword]);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                $hashedPassword = hash('sha256', $_POST['password']);
+                $query = $this->pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+                $query->execute([$_POST['username'], $_POST['email'], $hashedPassword]);
+                $_SESSION['user'] = $query->fetch();
+                $this->redirect('/dashboard');
+            } catch (\Exception $exception) {
+                $this->redirect('/');
+            }
+        }
     }
 }

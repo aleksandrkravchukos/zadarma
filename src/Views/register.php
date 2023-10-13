@@ -24,14 +24,14 @@ include_once 'header.php';
                 <div class="mb-3 row">
                     <label for="username" class="col-sm-4 col-form-label">Login</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="username">
+                        <input name="username" type="text" class="form-control" id="username">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-7">
-                        <input type="email" class="form-control" id="email">
+                        <input name="email" type="email" class="form-control" id="email">
                     </div>
                 </div>
 
@@ -39,14 +39,14 @@ include_once 'header.php';
                 <div class="mb-3 row">
                     <label for="password" class="col-sm-4 col-form-label">Password</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" id="password">
+                        <input name="password" type="password" class="form-control" id="password">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="password2" class="col-sm-4 col-form-label">Confirm password</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" id="password2">
+                        <input name="password2" type="password" class="form-control" id="password2">
                     </div>
                 </div>
 
