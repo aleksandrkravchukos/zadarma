@@ -18,7 +18,7 @@ include_once 'header.php';
         </div>
 
         <div class="col-md-9">
-            <h2>Dashboard of phone book</h2>
+            <h2>Dashboard. Hello <?=$_SESSION['user']['username']?></h2>
             <p>A phone book is a tool for storing, organizing and managing contacts and information about people and
                 organizations with whom you have contact. Typically, it contains information such as name, phone number,
                 email address, address, additional notes, and the ability to edit and search for this information. Phone

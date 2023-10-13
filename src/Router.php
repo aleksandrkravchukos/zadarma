@@ -9,7 +9,6 @@ require_once __DIR__ . '/Controllers/PhoneBookController.php';
 require_once __DIR__ . '/Models/PhoneBook.php';
 require_once __DIR__ . '/PdoConnection.php';
 
-
 class Router
 {
     public static function route($url, $routes)

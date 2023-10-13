@@ -39,4 +39,11 @@ $routes = [
                 'action' => 'addContact'
             ]
     ],
+    '/contact/update' => [
+        'POST' =>
+            [
+                'controller' => 'PhoneBookController',
+                'action' => 'updateContact'
+            ]
+    ],
 ];

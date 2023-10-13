@@ -54,30 +54,30 @@ include_once 'scripts.php';
                 <div class="col-md-12">
                     <form id="addContact" action="/contacts" method="POST">
                         <div class="mb-3 row">
-                            <label for="name" class="col-sm-2 col-form-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name">
+                            <label for="name" class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-8">
+                                <input placeholder="Type name" type="text" class="form-control" id="name">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="last_name" class="col-sm-2 col-form-label">Last name</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="last_name">
+                            <label for="last_name" class="col-sm-4 col-form-label">Last name</label>
+                            <div class="col-sm-8">
+                                <input placeholder="Type last name" type="text" class="form-control" id="last_name">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="phone">
+                            <label for="phone" class="col-sm-4 col-form-label">Phone</label>
+                            <div class="col-sm-8">
+                                <input placeholder="Type phone" type="text" class="form-control" id="phone">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="email" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email">
+                            <label for="email" class="col-sm-4 col-form-label">Email</label>
+                            <div class="col-sm-8">
+                                <input placeholder="Type email" type="email" class="form-control" id="email">
                             </div>
                         </div>
                     </form>
@@ -91,6 +91,61 @@ include_once 'scripts.php';
         </div>
     </div>
 </div>
+
+
+<div style="color: black" class="modal fade" id="contactModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <form id="viewContact" action="/contacts/update" method="POST">
+                        <input type="hidden" class="form-control" id="contact_id">
+                        <div class="mb-3 row">
+                            <label for="name" class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nameView">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="last_name" class="col-sm-4 col-form-label">Last name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="last_name_view">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="phone" class="col-sm-4 col-form-label">Phone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="phoneView">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="email" class="col-sm-4 col-form-label">Email</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="emailView">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="updateContact()" class="btn btn-success">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
   function getContacts() {
@@ -137,6 +192,10 @@ include_once 'scripts.php';
       .fail(function (error) {
         console.error('Error:', error);
       });
+  }
+
+  function updateContact(){
+
   }
 </script>
 </body>

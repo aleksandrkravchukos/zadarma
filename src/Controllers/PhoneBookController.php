@@ -29,9 +29,11 @@ class PhoneBookController extends Controller
         echo $result;
     }
 
-    public function updateContact($contactId, $data)
+    public function updateContact()
     {
-        return $this->model->updateContact($contactId, $data);
+        $result = $this->model->updateContact();
+        header('Content-Type: application/json');
+        echo $result;
     }
 
     public function deleteContact($contactId)

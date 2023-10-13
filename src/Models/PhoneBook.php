@@ -33,8 +33,12 @@ class PhoneBook
         return $query->fetch(PDO::FETCH_ASSOC);;
     }
 
-    public function updateContact($contactId, $data): bool
+    public function updateContact()
     {
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';
+        exit();
         // TODO:: update DB
         return true;
     }
