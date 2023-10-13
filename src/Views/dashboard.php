@@ -6,7 +6,7 @@ include_once 'header.php';
 <body>
 
 <header class="bg-dark text-light text-center py-4">
-    <h1>Phone book dashboard</h1>
+    <h1>Phone book</h1>
 </header>
 
 <div class="container mt-4">

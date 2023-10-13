@@ -31,10 +31,13 @@ class AuthController extends Controller
             $query = $this->pdo->prepare("SELECT * FROM users WHERE email = ? and password = ?");
             $query->execute([$email, $password]);
             $user = $query->fetch();
-            if ($user) {
-                $_SESSION['user'] = $user['id'];
+
+            if (isset($user['id'])) {
                 header('Location: /dashboard');
             }
+//            else {
+//                header('Location: /');
+//            }
         }
     }
 

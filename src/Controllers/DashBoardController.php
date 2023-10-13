@@ -7,15 +7,16 @@ class DashBoardController extends Controller
 //        $this->index();
 //    }
 
+    const VIEW_PATH = __DIR__ . '/../Views/';
+
     public function index()
     {
-        echo 'DASH';
-        exit();
         if (!isset($_SESSION['user'])) {
             header('Location: /');
             exit;
         } else {
-            header('Location: ' . FrontController::VIEW_PATH.'/dashboard.php');
+            header('Content-Type: text/html; charset=utf-8');
+            include self::VIEW_PATH . 'dashboard.php';
             exit();
         }
     }

@@ -1,12 +1,10 @@
 <?php
-session_start();
-
 include_once __DIR__ . '/../layout/head.php'
 ?>
 
 <body>
 <header class="bg-dark text-light text-center py-4">
-    <h1>Phone book dashboard</h1>
+    <h1>Phone book</h1>
 </header>
 
 <?php

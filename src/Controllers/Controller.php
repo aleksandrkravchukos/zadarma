@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\ArrayShape;
-
 class Controller
 {
     protected string $host;
@@ -12,6 +10,7 @@ class Controller
 
     public function __construct()
     {
+        session_start();
         $this->host = getenv('DB_HOST');
         $this->dbname = getenv('DB_NAME');
         $this->username = getenv('DB_USER');
