@@ -152,7 +152,7 @@ include_once 'scripts.php';
 <script>
   function getContacts() {
     let postData = {
-      userId: 3
+      userId: "<?=$_SESSION['user']['id']?>"
     }
     $.post('/contacts', postData, function (response) {
       var $table = $('#myTable');
@@ -193,9 +193,7 @@ include_once 'scripts.php';
     $form.find('input').each(function () {
       var $input = $(this);
       var id = $input.attr('id');
-      var value = $input.val();
-
-      formData[id] = value;
+      formData[id] = $input.val();
     });
     console.log(formData);
     $.post('/contact/add', formData, function (response) {
@@ -211,7 +209,7 @@ include_once 'scripts.php';
   function updateContact(id) {
     var $form = $('#viewContact');
     var formData = {};
-    $form.find('input').each(function() {
+    $form.find('input').each(function () {
       var $input = $(this);
       var id = $input.attr('id');
       var value = $input.val();
@@ -226,23 +224,19 @@ include_once 'scripts.php';
       .fail(function (error) {
         alert(error);
       });
-
   }
 
-  function deleteContact(id){
-    var userInput = prompt('Are you sure?', '');
-    if (userInput !== null) {
+  function deleteContact(id) {
+    var userInput = prompt('Are you sure? Type the "DELETE" for accept', '');
+    if (userInput == 'DELETE') {
       $.post('/contact/delete', {contactId: id}, function (response) {
-        console.log(response)
-        alert('Contact was deleted')
         getContacts();
       })
         .fail(function (error) {
           console.log(error);
         });
     } else {
-      // User clicked "Cancel" in the prompt
-      alert('You clicked Cancel or closed the prompt.');
+      alert('You clicked Cancel or typed incorrect answer for the prompt.');
     }
   }
 
