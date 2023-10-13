@@ -2,7 +2,6 @@
 
 class AuthController extends Controller
 {
-
     public function processLogout(): void
     {
         $_SESSION = [];
@@ -26,17 +25,10 @@ class AuthController extends Controller
         }
     }
 
-    public function processRegistration()
+    public function processRegistration(): bool
     {
-        echo '<pre>';
-        print_r($_POST);
-        echo '</pre>';
-        // Hash the password
-        //$hashedPassword = hash('sha256',$password);
-
-//        // Insert the user into the database
-//        $query = $this->db->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-//        $query->execute([$username, $email, $hashedPassword]);
-//        return $query->rowCount() > 0;
+        $hashedPassword = hash('sha256',$_POST['password']);
+        $query = $this->pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+        return $query->execute([$_POST['username'], $_POST['email'], $hashedPassword]);
     }
 }
