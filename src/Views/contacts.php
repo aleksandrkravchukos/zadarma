@@ -138,8 +138,6 @@ include_once 'scripts.php';
         console.error('Error:', error);
       });
   }
-
-
 </script>
 </body>
 
