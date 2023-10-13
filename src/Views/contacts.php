@@ -179,11 +179,15 @@ include_once 'scripts.php';
   });
 
   function getContact(id) {
-    $.post('/contact/', {contactId: id}, function (response) {
+    $.post('/contact', {contactId: id}, function (response) {
       console.log(response)
+      $('#nameView').val(response.name)
+      $('#last_name_view').val(response.last_name)
+      $('#phoneView').val(response.phone)
+      $('#emailView').val(response.email)
     })
       .fail(function (error) {
-        alert(error);
+        console.log(error);
       });
   }
 
@@ -208,7 +212,24 @@ include_once 'scripts.php';
       });
   }
 
-  function updateContact() {
+  function updateContact(id) {
+    var $form = $('#viewContact');
+    var formData = {};
+    $form.find('input').each(function() {
+      var $input = $(this);
+      var id = $input.attr('id');
+      var value = $input.val();
+      formData[id] = value;
+    });
+
+    $.post('/contact/update', formData, function (response) {
+      getContacts();
+      alert('Contact updated');
+      $('#viewContact').modal('hide');
+    })
+      .fail(function (error) {
+        alert(error);
+      });
 
   }
 </script>

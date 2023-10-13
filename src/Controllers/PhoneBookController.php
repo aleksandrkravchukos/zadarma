@@ -11,7 +11,7 @@ class PhoneBookController extends Controller
 
     public function contact()
     {
-        $contact = json_encode($this->model->getContact($_SESSION['user']['id'], $_POST['id']));
+        $contact = json_encode($this->model->getContact($_SESSION['user']['id'], $_POST['contactId']));
         header('Content-Type: application/json');
         echo $contact;
     }
@@ -31,7 +31,7 @@ class PhoneBookController extends Controller
 
     public function updateContact()
     {
-        $result = $this->model->updateContact();
+        $result = $this->model->updateContact($_SESSION['user']['id'], $_POST['contact_id']);
         header('Content-Type: application/json');
         echo $result;
     }
