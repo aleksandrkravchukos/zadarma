@@ -11,7 +11,6 @@ class Controller
         session_start();
         $pdo = new PdoConnection();
         $this->pdo = $pdo->getPDO();
-
         $this->model = new PhoneBook();
     }
 
