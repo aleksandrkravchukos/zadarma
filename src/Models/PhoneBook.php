@@ -53,6 +53,7 @@ class PhoneBook
                 $_POST['contact_id']
             ]
         );
+
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 

@@ -181,6 +181,7 @@ include_once 'scripts.php';
       $('#last_name_view').val(response.last_name)
       $('#phoneView').val(response.phone)
       $('#emailView').val(response.email)
+      $('#contact_id').val(id)
     })
       .fail(function (error) {
         console.log(error);
@@ -212,14 +213,13 @@ include_once 'scripts.php';
     $form.find('input').each(function () {
       var $input = $(this);
       var id = $input.attr('id');
-      var value = $input.val();
-      formData[id] = value;
+      formData[id] = $input.val();
     });
-
+    formData['id'] = id;
     $.post('/contact/update', formData, function (response) {
+      //alert('Contact was updated');
       getContacts();
-      alert('Contact was updated');
-      $('#viewContact').modal('hide');
+      $('#contactModal').modal('hide');
     })
       .fail(function (error) {
         alert(error);

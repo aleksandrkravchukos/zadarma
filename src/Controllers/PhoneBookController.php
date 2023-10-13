@@ -31,7 +31,7 @@ class PhoneBookController extends Controller
 
     public function updateContact()
     {
-        $result = $this->model->updateContact();
+        $result = json_encode($this->model->updateContact());
         header('Content-Type: application/json');
         echo $result;
     }
