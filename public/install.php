@@ -31,6 +31,7 @@ try {
     $stmt->execute();
     echo "User '$newUsername' with email '$newEmail' added to the 'users' table.<br>";
 
+
     $sql = "
     CREATE TABLE IF NOT EXISTS contacts (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -39,7 +40,6 @@ try {
         last_name VARCHAR(50),
         email VARCHAR(100) UNIQUE,
         phone VARCHAR(100),
-        image VARCHAR(255),
         FOREIGN KEY (user_id) REFERENCES users(id)
     );
     ";

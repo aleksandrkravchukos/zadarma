@@ -52,7 +52,7 @@ include_once 'scripts.php';
             </div>
             <div class="modal-body">
                 <div class="col-md-12">
-                    <form action="/contacts" method="POST">
+                    <form id="addContact" action="/contacts" method="POST">
                         <div class="mb-3 row">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
@@ -117,9 +117,26 @@ include_once 'scripts.php';
   });
 
   function addContact() {
-    // $('#myModal').hide();
-    $('#myModal').modal('hide');
+    var $form = $('#addContact');
+    var formData = {};
+    $form.find('input').each(function() {
+      var $input = $(this);
+      var id = $input.attr('id');
+      var value = $input.val();
+
+      formData[id] = value;
+    });
+    console.log(formData);
+    $.post('/contact/add', formData, function (response) {
+      getContacts();
+      $('#myModal').modal('hide');
+    })
+      .fail(function (error) {
+        console.error('Error:', error);
+      });
   }
+
+
 </script>
 </body>
 

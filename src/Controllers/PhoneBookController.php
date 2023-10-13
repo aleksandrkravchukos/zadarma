@@ -22,10 +22,11 @@ class PhoneBookController extends Controller
         include $this->getViewPath() . 'contacts.php';
     }
 
-    public function addContact($data)
+    public function addContact()
     {
-        $this->model->addContact($data);
-        return json_encode([/** TODO: result array */]);
+        $result = $this->model->addContact($_POST);
+        header('Content-Type: application/json');
+        echo $result;
     }
 
     public function updateContact($contactId, $data)

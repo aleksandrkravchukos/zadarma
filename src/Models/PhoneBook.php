@@ -12,8 +12,10 @@ class PhoneBook
 
     public function addContact(array $data): bool
     {
-        // TODO:: Add contact to database
-        return true;
+        $sql = "INSERT INTO `contacts` (`user_id`, `name`, `last_name`, `email`, `phone`)
+                VALUES (?, ?, ?, ?, ?)";
+        $query = $this->pdo->getPDO()->prepare($sql);
+        return $query->execute([$_SESSION['user']['id'], $_POST['name'], $_POST['last_name'], $_POST['email'], $_POST['phone']]);
     }
 
     public function getContacts(int $userId): array
