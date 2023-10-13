@@ -98,6 +98,8 @@ include_once 'scripts.php';
       userId: 3
     }
     $.post('/contacts', postData, function (response) {
+      var $table = $('#myTable');
+      $table.find('tbody tr').remove();
       const table = document.getElementById('myTable');
       const tbody = table.querySelector('tbody');
       response.forEach(item => {
@@ -129,6 +131,7 @@ include_once 'scripts.php';
     console.log(formData);
     $.post('/contact/add', formData, function (response) {
       getContacts();
+      alert('Contact added');
       $('#myModal').modal('hide');
     })
       .fail(function (error) {

@@ -11,7 +11,7 @@ class PhoneBookController extends Controller
 
     public function contact()
     {
-        $contact = json_encode($this->model->getContact($_SESSION['user']['id']));
+        $contact = json_encode($this->model->getContact($_SESSION['user']['id'], $_POST['id']));
         header('Content-Type: application/json');
         echo $contact;
     }

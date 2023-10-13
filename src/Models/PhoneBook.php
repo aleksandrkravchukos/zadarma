@@ -15,6 +15,7 @@ class PhoneBook
         $sql = "INSERT INTO `contacts` (`user_id`, `name`, `last_name`, `email`, `phone`)
                 VALUES (?, ?, ?, ?, ?)";
         $query = $this->pdo->getPDO()->prepare($sql);
+
         return $query->execute([$_SESSION['user']['id'], $_POST['name'], $_POST['last_name'], $_POST['email'], $_POST['phone']]);
     }
 
@@ -22,13 +23,14 @@ class PhoneBook
     {
         $query = $this->pdo->getPDO()->prepare("SELECT * FROM contacts WHERE user_id = ? ORDER BY id desc");
         $query->execute([$userId]);
-        $contacts = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_ASSOC);;
+    }
 
-//        echo '<pre>';
-//        print_r($contacts);
-//        echo '</pre>';
-
-        return $contacts;
+    public function getContact(int $userId, int $contactId): array
+    {
+        $query = $this->pdo->getPDO()->prepare("SELECT * FROM contacts WHERE user_id = ? and id = ? ORDER BY id desc");
+        $query->execute([$userId, $contactId]);
+        return $query->fetch(PDO::FETCH_ASSOC);;
     }
 
     public function updateContact($contactId, $data): bool
