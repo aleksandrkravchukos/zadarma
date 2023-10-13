@@ -28,7 +28,9 @@ class AuthController extends Controller
 
     public function processRegistration()
     {
-        echo 'test';
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';
         // Hash the password
         //$hashedPassword = hash('sha256',$password);
 

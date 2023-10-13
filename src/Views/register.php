@@ -41,7 +41,7 @@ include_once 'header.php';
                 <div class="mb-3 row">
                     <label for="username" class="col-sm-4 col-form-label">Login</label>
                     <div class="col-sm-7">
-                        <input type="test" class="form-control" id="username">
+                        <input type="text" class="form-control" id="username">
                     </div>
                 </div>
 

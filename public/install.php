@@ -37,9 +37,21 @@ try {
         user_id INT,
         name VARCHAR(50),
         last_name VARCHAR(50),
-        email VARCHAR(100),
+        email VARCHAR(100) UNIQUE,
+        phone VARCHAR(100),
         image VARCHAR(255),
         FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+    ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $sql = "
+    CREATE TABLE IF NOT EXISTS contacts (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        contact_id INT,
+        path VARCHAR(200),
+        FOREIGN KEY (contact_id) REFERENCES contacts(id)
     );
     ";
     $stmt = $pdo->prepare($sql);

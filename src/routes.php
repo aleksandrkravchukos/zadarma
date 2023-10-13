@@ -17,7 +17,26 @@ $routes = [
         'GET' =>
             [
                 'controller' => 'PhoneBookController',
+                'action' => 'contactsView'
+            ],
+        'POST' =>
+            [
+                'controller' => 'PhoneBookController',
                 'action' => 'listContacts'
+            ],
+    ],
+    '/contact' => [
+        'POST' =>
+            [
+                'controller' => 'PhoneBookController',
+                'action' => 'contact'
+            ]
+    ],
+    '/contact/add' => [
+        'POST' =>
+            [
+                'controller' => 'PhoneBookController',
+                'action' => 'addContact'
             ]
     ],
 ];

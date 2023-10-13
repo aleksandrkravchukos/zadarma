@@ -4,8 +4,22 @@ class PhoneBookController extends Controller
 {
     public function listContacts()
     {
-        $contacts = $this->model->getContacts();
-        //TODO:: include __DIR__.'/../resources/view/contacts.php';
+        $contacts = json_encode($this->model->getContacts($_SESSION['user']['id']));
+        header('Content-Type: application/json');
+        echo $contacts;
+    }
+
+    public function contact()
+    {
+        $contact = json_encode($this->model->getContact($_SESSION['user']['id']));
+        header('Content-Type: application/json');
+        echo $contact;
+    }
+
+    public function contactsView()
+    {
+        header('Content-Type: text/html; charset=utf-8');
+        include $this->getViewPath() . 'contacts.php';
     }
 
     public function addContact($data)
