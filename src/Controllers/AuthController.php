@@ -1,26 +1,13 @@
 <?php
 
-use JetBrains\PhpStorm\NoReturn;
-
 class AuthController extends Controller
 {
-
-//    public function __construct($db = null)
-//    {
-//        $this->db = $db;
-//        if (isset($_SESSION['user'])) {
-//            header('Location: ' . FrontController::VIEW_PATH . 'dashboard.php');
-//            exit;
-//        } else {
-//            //header('Location: /');
-//        }
-//    }
 
     public function processLogout(): void
     {
         $_SESSION = [];
         session_destroy();
-        header('Location: /');
+        $this->redirect('/');
     }
 
     public function processLogin(): void
@@ -33,11 +20,8 @@ class AuthController extends Controller
             $user = $query->fetch();
 
             if (isset($user['id'])) {
-                header('Location: /dashboard');
+                $this->redirect('/dashboard');
             }
-//            else {
-//                header('Location: /');
-//            }
         }
     }
 

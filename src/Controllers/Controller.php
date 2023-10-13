@@ -8,9 +8,14 @@ class Controller
     protected string $password;
     protected ?PDO $pdo = null;
 
-    public function __construct()
+    protected $model;
+
+    const VIEW_PATH = __DIR__ . '/../Views/';
+
+    public function __construct(PhoneBookModel $model)
     {
         session_start();
+        $this->model = $model;
         $this->host = getenv('DB_HOST');
         $this->dbname = getenv('DB_NAME');
         $this->username = getenv('DB_USER');
@@ -22,5 +27,10 @@ class Controller
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
+    }
+
+    public function redirect(string $location)
+    {
+        header('Location: ' . $location);
     }
 }

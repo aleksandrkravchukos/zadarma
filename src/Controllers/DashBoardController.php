@@ -7,12 +7,10 @@ class DashBoardController extends Controller
 //        $this->index();
 //    }
 
-    const VIEW_PATH = __DIR__ . '/../Views/';
-
     public function index()
     {
         if (!isset($_SESSION['user'])) {
-            header('Location: /');
+            $this->redirect('/');
             exit;
         } else {
             header('Content-Type: text/html; charset=utf-8');

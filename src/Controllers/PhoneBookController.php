@@ -2,13 +2,6 @@
 
 class PhoneBookController extends Controller
 {
-    private $model;
-
-    public function __construct(PhoneBookModel $model)
-    {
-        $this->model = $model;
-    }
-
     public function listContacts()
     {
         $contacts = $this->model->getContacts();
