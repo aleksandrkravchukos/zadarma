@@ -4,3 +4,5 @@ RewriteBase /
 RewriteRule ^$ index.php [L]
 RewriteRule ^login$ index.php [L]
 RewriteRule ^dashboard$ index.php [L]
+RewriteRule ^logout$ index.php [L]
+RewriteRule ^register$ index.php [L]

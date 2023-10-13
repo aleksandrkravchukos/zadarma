@@ -8,14 +8,12 @@ class Controller
     protected string $password;
     protected ?PDO $pdo = null;
 
-    protected $model;
+    protected PhoneBookModel $model;
 
-    const VIEW_PATH = __DIR__ . '/../Views/';
-
-    public function __construct(PhoneBookModel $model)
+    public function __construct()
     {
         session_start();
-        $this->model = $model;
+        $this->model = new PhoneBookModel();
         $this->host = getenv('DB_HOST');
         $this->dbname = getenv('DB_NAME');
         $this->username = getenv('DB_USER');
@@ -32,5 +30,10 @@ class Controller
     public function redirect(string $location)
     {
         header('Location: ' . $location);
+    }
+
+    public function getViewPath(): string
+    {
+        return __DIR__ . '/../Views/';
     }
 }

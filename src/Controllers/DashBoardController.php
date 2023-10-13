@@ -2,19 +2,18 @@
 
 class DashBoardController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->index();
-//    }
-
     public function index()
     {
+//        echo '<pre>';
+//        print_r($_SESSION);
+//        echo '</pre>';
+//        exit();
         if (!isset($_SESSION['user'])) {
             $this->redirect('/');
             exit;
         } else {
             header('Content-Type: text/html; charset=utf-8');
-            include self::VIEW_PATH . 'dashboard.php';
+            include $this->getViewPath() . 'dashboard.php';
             exit();
         }
     }

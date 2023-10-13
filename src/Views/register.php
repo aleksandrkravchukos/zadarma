@@ -1,4 +1,14 @@
 <?php
+//
+//session_start();
+//if (isset($_SESSION['user'])) {
+//    header('Location: dashboard.php');
+//    exit;
+//}
+//?>
+
+<html>
+<?php
 include_once 'header.php';
 ?>
 <body>
@@ -11,41 +21,47 @@ include_once 'header.php';
     <div class="row">
         <!-- Перша колонка для меню -->
         <div class="col-md-3">
-<!--            <div class="list-group">-->
-<!--                <a href="#" class="list-group-item list-group-item-action">Пункт Меню 1</a>-->
-<!--                <a href="#" class="list-group-item list-group-item-action">Пункт Меню 2</a>-->
-<!--                <a href="#" class="list-group-item list-group-item-action">Пункт Меню 3</a>-->
-<!--            </div>-->
-            <?php
-            include "auth.php";
-            ?>
+
+                        <div class="list-group">
+<!--                            <a style="margin-bottom: 20px;" href="#" class="list-group-item list-group-item-action">Contacts</a><br><br>-->
+<!--                            <a href="#" class="list-group-item list-group-item-action">Пункт Меню 2</a>-->
+<!--                            <a href="#" class="list-group-item list-group-item-action">Пункт Меню 3</a>-->
+                        </div>
+<!--            --><?php
+//            include "auth.php";
+//            ?>
+
         </div>
 
-        <!-- Друга колонка для вмісту -->
-        <div class="col-md-9">
-            <h2>Description</h2>
+        <div class="col-md-6">
+            <h2>Put your data</h2>
+            <form action="/register" method="POST">
+                <label class="col-form-label" for="username">Login</label>
+                <input class="form-control" type="text" name="username" required>
 
-            <p>A phone book is a tool for storing, organizing and managing contacts and information about people and organizations with whom you have contact. Typically, it contains information such as name, phone number, email address, address, additional notes, and the ability to edit and search for this information. Phone books can be physical notebooks or virtual applications available online or on mobile devices.</p>
+                <label for="username">Email</label>
+                <input class="form-control" type="email" name="email" required>
 
-            <p>A phone book site is an online application that allows users to store, edit and manage their contacts online. Here is a short description of the functions and capabilities of the phone book website:</p>
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" required>
 
-            <p>Registration and authorization: Users can create an account and log in to the site to access their phone book.</p>
+                <label for="password2">Confirm password</label>
+                <input class="form-control" type="password" name="password2" required>
 
-            <p>Adding and editing contacts: Users can add new contacts and edit existing contact details such as name, phone number, address, etc.</p>
+                <button class="btn btn-success" style="margin-top: 20px;" type="submit">Register</button>
 
-            <p>Search and filter contacts: Users can search for contacts by name, phone number, or other parameters. It may also be possible to filter contacts by groups or categories.</p>
+                <?php
+                    if(!isset($_SESSION['user'])){
+                        echo '<a href="/" class="btn btn-primary" style="margin-top: 20px;" type="submit">Login</a>';
+                    }
+                ?>
 
-            <p>Delete contacts: Users can delete redundant or outdated contacts from their book.</p>
 
-            <p>Export and import of contacts: Ability to export and import contacts in various formats (for example, CSV or vCard) for convenient data exchange.</p>
+            </form>
 
-            <p>Synchronization with other devices: If the site works on mobile devices, then users can synchronize their phone book with other devices so that they can access it from anywhere.</p>
+        </div>
 
-            <p>Protection and security: Ensuring the security of user data, such as encryption and protection against unauthorized access.</p>
-
-            <p>Other features: May include the ability to add images to contacts, create contact groups, birthday reminders, and other useful features.</p>
-
-            <p>A phone book site helps people manage their contacts and access them anytime and from any device with an Internet connection.</p>
+        <div class="col-md-6">
         </div>
     </div>
 </div>

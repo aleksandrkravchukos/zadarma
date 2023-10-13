@@ -3,6 +3,8 @@
 class AuthController extends Controller
 {
 
+    const VIEW_PATH = __DIR__ . '/../Views/';
+
     public function processLogout(): void
     {
         $_SESSION = [];
@@ -20,6 +22,7 @@ class AuthController extends Controller
             $user = $query->fetch();
 
             if (isset($user['id'])) {
+                $_SESSION['user'] = $user;
                 $this->redirect('/dashboard');
             }
         }
@@ -27,7 +30,7 @@ class AuthController extends Controller
 
     public function register()
     {
-//        include $this->getViewPath().'register.php';
+        include $this->getViewPath().'register.php';
     }
 
     public function registerUser($username = null, $email = null, $password = null)
