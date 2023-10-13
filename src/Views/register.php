@@ -1,13 +1,5 @@
-<?php
-//
-//session_start();
-//if (isset($_SESSION['user'])) {
-//    header('Location: dashboard.php');
-//    exit;
-//}
-//?>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <?php
 include_once 'header.php';
 ?>

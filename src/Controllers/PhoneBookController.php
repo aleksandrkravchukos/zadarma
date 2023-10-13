@@ -36,9 +36,9 @@ class PhoneBookController extends Controller
         echo $result;
     }
 
-    public function deleteContact($contactId)
+    public function deleteContact()
     {
         header('Content-Type: application/json');
-        echo $this->model->deleteContact($contactId);
+        echo $this->model->deleteContact();
     }
 }

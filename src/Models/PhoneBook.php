@@ -1,11 +1,13 @@
 <?php
 
+use JetBrains\PhpStorm\Pure;
+
 class PhoneBook
 {
 
     private PdoConnection $pdo;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->pdo = new PdoConnection();
     }
@@ -53,7 +55,7 @@ class PhoneBook
         return $query->fetch(PDO::FETCH_ASSOC);;
     }
 
-    public function deleteContact($contactId): bool
+    public function deleteContact(): bool
     {
         //TODO: delete contact from DB
 
