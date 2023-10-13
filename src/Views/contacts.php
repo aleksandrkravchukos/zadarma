@@ -28,6 +28,7 @@ include_once 'header.php';
                 <th class="">Last name</th>
                 <th class="">Phone</th>
                 <th class="">E-mail</th>
+                <th class="">Delete</th>
                 </thead>
                 <tbody id="tableBody">
                 </tbody>
@@ -160,7 +161,7 @@ include_once 'scripts.php';
       const tbody = table.querySelector('tbody');
       response.forEach(item => {
         const row = document.createElement('tr');
-        row.innerHTML = `<td><button class="btn btn-info contactModalButton" onclick="getContact(` + item.id + `)">${item.name}</button> </td><td>${item.last_name}</td><td>${item.phone}</td><td>${item.email}</td>`;
+        row.innerHTML = `<td><button class="btn btn-info contactModalButton" onclick="getContact(` + item.id + `)">${item.name}</button> </td><td>${item.last_name}</td><td>${item.phone}</td><td>${item.email}</td><td><button onclick="deleteContact(` + item.id + `)" class="btn btn-danger">Delete<i class="fas fa-trash"></i></button></td>`;
         tbody.appendChild(row);
       });
 
@@ -172,12 +173,6 @@ include_once 'scripts.php';
         console.error('Error:', error);
       });
   }
-
-  getContacts();
-
-  document.getElementById('openModalButton').addEventListener('click', function () {
-    $('#myModal').modal('show');
-  });
 
   function getContact(id) {
     $.post('/contact', {contactId: id}, function (response) {
@@ -225,7 +220,7 @@ include_once 'scripts.php';
 
     $.post('/contact/update', formData, function (response) {
       getContacts();
-      alert('Contact updated');
+      alert('Contact was updated');
       $('#viewContact').modal('hide');
     })
       .fail(function (error) {
@@ -233,6 +228,29 @@ include_once 'scripts.php';
       });
 
   }
+
+  function deleteContact(id){
+    var userInput = prompt('Are you sure?', '');
+    if (userInput !== null) {
+      $.post('/contact/delete', {contactId: id}, function (response) {
+        console.log(response)
+        alert('Contact was deleted')
+        getContacts();
+      })
+        .fail(function (error) {
+          console.log(error);
+        });
+    } else {
+      // User clicked "Cancel" in the prompt
+      alert('You clicked Cancel or closed the prompt.');
+    }
+  }
+
+  document.getElementById('openModalButton').addEventListener('click', function () {
+    $('#myModal').modal('show');
+  });
+
+  getContacts();
 </script>
 </body>
 

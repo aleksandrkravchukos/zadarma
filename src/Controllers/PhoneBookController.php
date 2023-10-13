@@ -31,7 +31,7 @@ class PhoneBookController extends Controller
 
     public function updateContact()
     {
-        $result = $this->model->updateContact($_SESSION['user']['id'], $_POST['contact_id']);
+        $result = $this->model->updateContact();
         header('Content-Type: application/json');
         echo $result;
     }

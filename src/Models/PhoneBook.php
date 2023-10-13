@@ -7,7 +7,7 @@ class PhoneBook
 
     private PdoConnection $pdo;
 
-    #[Pure] public function __construct()
+    public function __construct()
     {
         $this->pdo = new PdoConnection();
     }
@@ -34,31 +34,33 @@ class PhoneBook
     {
         $query = $this->pdo->getPDO()->prepare("SELECT * FROM contacts WHERE user_id = ? and id = ? ORDER BY id desc");
         $query->execute([$userId, $contactId]);
-        return $query->fetch(PDO::FETCH_ASSOC);;
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateContact(int $userId, int $contactId)
+    public function updateContact()
     {
         $query = $this->pdo->getPDO()->prepare(
             "UPDATE contacts SET name = ?, last_name = ?, email = ?, phone = ? WHERE user_id = ? and id = ? ORDER BY id desc"
         );
+
         $query->execute(
             [
                 $_POST['nameView'],
                 $_POST['last_name_view'],
                 $_POST['emailView'],
                 $_POST['phoneView'],
-                $userId,
-                $contactId
+                $_SESSION['user']['id'],
+                $_POST['contact_id']
             ]
         );
-        return $query->fetch(PDO::FETCH_ASSOC);;
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
     public function deleteContact(): bool
     {
-        //TODO: delete contact from DB
+        $query = $this->pdo->getPDO()->prepare("DELETE FROM contacts WHERE id = ?");
+        $query->execute([$_POST['contactId']]);
+        return $query->fetch(PDO::FETCH_ASSOC);
 
-        return true;
     }
 }
