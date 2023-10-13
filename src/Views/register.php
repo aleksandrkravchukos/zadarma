@@ -33,22 +33,41 @@ include_once 'header.php';
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-7">
+
             <h2>Put your data</h2>
             <form action="/register" method="POST">
-                <label class="col-form-label" for="username">Login</label>
-                <input class="form-control" type="text" name="username" required>
 
-                <label for="username">Email</label>
-                <input class="form-control" type="email" name="email" required>
+                <div class="mb-3 row">
+                    <label for="username" class="col-sm-4 col-form-label">Login</label>
+                    <div class="col-sm-7">
+                        <input type="test" class="form-control" id="username">
+                    </div>
+                </div>
 
-                <label for="password">Password</label>
-                <input class="form-control" type="password" name="password" required>
+                <div class="mb-3 row">
+                    <label for="email" class="col-sm-4 col-form-label">Email</label>
+                    <div class="col-sm-7">
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                </div>
 
-                <label for="password2">Confirm password</label>
-                <input class="form-control" type="password" name="password2" required>
 
-                <button class="btn btn-success" style="margin-top: 20px;" type="submit">Register</button>
+                <div class="mb-3 row">
+                    <label for="password" class="col-sm-4 col-form-label">Password</label>
+                    <div class="col-sm-7">
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="password2" class="col-sm-4 col-form-label">Confirm password</label>
+                    <div class="col-sm-7">
+                        <input type="password" class="form-control" id="password2">
+                    </div>
+                </div>
+
+                <button class="btn btn-success float-right" style="margin-top: 20px;" type="submit">Register</button>
 
                 <?php
                     if(!isset($_SESSION['user'])){

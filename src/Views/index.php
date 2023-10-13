@@ -9,7 +9,6 @@ include_once 'header.php';
 
 <div class="container mt-4">
     <div class="row">
-        <!-- Перша колонка для меню -->
         <div class="col-md-3">
 <!--            <div class="list-group">-->
 <!--                <a href="#" class="list-group-item list-group-item-action">Пункт Меню 1</a>-->
@@ -21,7 +20,6 @@ include_once 'header.php';
             ?>
         </div>
 
-        <!-- Друга колонка для вмісту -->
         <div class="col-md-9">
             <h2>Description</h2>
 

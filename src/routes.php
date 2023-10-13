@@ -10,7 +10,7 @@ $routes = [
         'POST' => ['controller' => 'AuthController', 'action' => 'processLogout']
     ],
     '/register' => [
-        'GET' => ['controller' => 'AuthController', 'action' => 'register'],
+        'GET' => ['controller' => 'FrontController', 'action' => 'register'],
         'POST' => ['controller' => 'AuthController', 'action' => 'processRegistration']
     ],
     '/contacts' => [

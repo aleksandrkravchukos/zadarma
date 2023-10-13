@@ -11,4 +11,9 @@ class FrontController extends Controller
             include $this->getViewPath() . 'index.php';
         }
     }
+
+    public function register()
+    {
+        include $this->getViewPath().'register.php';
+    }
 }
