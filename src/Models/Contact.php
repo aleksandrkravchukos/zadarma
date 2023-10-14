@@ -23,8 +23,6 @@ class Contact
 
     public function getContacts(int $userId): array
     {
-//        echo 'test';
-//        exit();
         $query = $this->pdo->getPDO()->prepare("SELECT * FROM contacts WHERE user_id = ? ORDER BY id desc");
         $query->execute([$userId]);
         $contacts = $query->fetchAll(PDO::FETCH_ASSOC);
