@@ -6,9 +6,9 @@ if (!isset($_SESSION['user'])) {
         <form action="/login" method="POST">
             <h2>Login</h2>
             <label class="col-form-label" for="username">Email</label>
-            <input class="form-control" type="email" name="email" required>
+            <input placeholder="Email" class="form-control" type="email" name="email" required>
             <label class="col-form-label" for="password">Password</label>
-            <input class="form-control" type="password" name="password" required>
+            <input placeholder="Password" class="form-control" type="password" name="password" required>
             <button style="margin-top: 20px;" class="btn btn-success" type="submit">Sign in</button>
             <a href="/register" style="margin-top: 20px;" class="btn btn-primary float-right">Sign up</a>
         </form>

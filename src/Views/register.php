@@ -19,11 +19,11 @@ include_once 'header.php';
         <div class="col-md-7">
 
             <h2>Put your data</h2>
-            <form action="/register" method="POST">
+            <form id="registerForm" action="/register" method="POST">
                 <div class="mb-3 row">
                     <label for="username" class="col-sm-4 col-form-label">Login</label>
                     <div class="col-sm-7">
-                        <input onblur="validateLogin(this.val())" name="username" type="text" class="form-control" id="username" maxlength="16">
+                        <input onblur="validateLogin(this.value)" name="username" type="text" class="form-control" id="username" maxlength="16">
                         <div id="username_error"></div>
                     </div>
                 </div>
@@ -31,7 +31,8 @@ include_once 'header.php';
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-7">
-                        <input name="email" type="email" class="form-control" id="email">
+                        <input onblur="validateEmail(this.value)" name="email" type="email" class="form-control" id="email">
+                        <div id="email_error"></div>
                     </div>
                 </div>
 
@@ -39,7 +40,8 @@ include_once 'header.php';
                 <div class="mb-3 row">
                     <label for="password" class="col-sm-4 col-form-label">Password</label>
                     <div class="col-sm-7">
-                        <input name="password" type="password" class="form-control" id="password">
+                        <input onblur="validatePassword(this.value)" name="password" type="password" class="form-control" id="password">
+                        <div id="password_error"></div>
                     </div>
                 </div>
 

@@ -1,45 +1,65 @@
 'use strict';
 
 function validateLogin(login) {
-  $('#username_error').val();
-  var errors = [];
-  var valid = false;
-  e.preventDefault();
-  var regex = /^[A-Za-z0-9]+$/;
-  if (login.length > 16) {
-    $('#username_error').html('Login should be no more than 16 characters.');
-  } else if (!regex.test(login)) {
-    $('#username_error').html('Login should only contain Latin letters and numbers.');
+  var regex = /^[A-Za-z0-9]{1,16}$/;
+  if (regex.test(login)) {
+    console.log('true');
+    $('#username_error').html('')
+    return true;
   } else {
-    valid = true;
+    console.log('false');
+    $('#username_error').html('Invalid login. Please use Latin letters and digits')
+    return false;
+  }
+}
+
+function validateEmail(email) {
+  var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (regex.test(email) == true) {
+    $('#email_error').html('');
+    return true;
+  } else {
+    $('#email_error').html('Invalid email');
+    return false;
+  }
+}
+
+function validatePassword(pass) {
+  var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+  
+  if (regex.test(pass)) {
+    $('#password_error').html('');
+    return true;
+  } else {
+    $('#password_error').html('Invalid password. Please enter a valid password (at least 6 characters with both upper and lower case letters and a digit).');
+    return false;
+  }
+}
+
+$("#registerForm").submit(function (e) {
+  e.preventDefault();
+  let validate = true;
+  let pass = $('#password').val();
+  let pass2 = $('#password2').val();
+  if (!validateLogin($('#username').val())) {
+    validate = false;
   }
   
-  return [valid, errors];
-}
-
-function validateName(name) {
-  var regex = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/;
-  if (regex.test(name) == true) {
-    return true;
-  } else {
-    return false;
+  if (!validateEmail($('#email').val())) {
+    validate = false;
   }
-}
-
-function validatePhone(phone) {
-  var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-  if (regex.test(phone) == true) {
-    return true;
-  } else {
-    return false;
+  
+  if (!validatePassword($('#password').val())) {
+    validate = false;
   }
-}
-
-function validateEmail(value) {
-  var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (regex.test(value) == true) {
-    return true;
-  } else {
-    return false;
+  
+  if (pass !== pass2 || pass === '' || pass2 === '') {
+    validate = false;
   }
-}
+  
+  if (validate) {
+    this.submit();
+  } else {
+    alert('Check your form information');
+  }
+});

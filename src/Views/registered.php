@@ -18,7 +18,7 @@ include_once 'header.php';
 
         <div class="col-md-7">
             <?php
-            echo '<h2>You are registered in our system, please check email</h2><br>';
+            echo '<h2>Please, check your email</h2><br>';
             include "auth.php";
             ?>
 
