@@ -48,6 +48,8 @@ Go to http://localhost/install.php and then you need delete this file in public 
 
 Go to http://localhost and try to test
 
+After this you can login with email "admin@admin.com" and password "1"
+
 Here is Adminer http://localhost:8081/
 - login:root
 - pass:test
