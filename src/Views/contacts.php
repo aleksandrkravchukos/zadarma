@@ -181,7 +181,7 @@ include_once 'scripts.php';
 
 <script>
   var contactId = 0;
-  var notImage = 'You can upload avatar after creating contact';
+  var notImage = 'You can upload avatar after creating/updating contact';
 
   function getContacts() {
     let postData = {
