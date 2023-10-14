@@ -21,6 +21,8 @@ class AuthController extends Controller
             if (isset($user['id'])) {
                 $_SESSION['user'] = $user;
                 $this->redirect('/dashboard');
+            } else {
+                $this->redirect('/');
             }
         }
     }
@@ -32,8 +34,9 @@ class AuthController extends Controller
                 $hashedPassword = hash('sha256', $_POST['password']);
                 $query = $this->pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
                 $query->execute([$_POST['username'], $_POST['email'], $hashedPassword]);
-                $_SESSION['user'] = $query->fetch();
-                $this->redirect('/dashboard');
+                $query->fetch();
+                sleep(2); // TODO: send verification email algorithm.
+                $this->redirect('/registered'); // model if user accept email link
             } catch (\Exception $exception) {
                 $this->redirect('/');
             }

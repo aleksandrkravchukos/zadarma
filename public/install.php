@@ -40,18 +40,18 @@ try {
         last_name VARCHAR(50),
         email VARCHAR(100) UNIQUE,
         phone VARCHAR(100),
-        FOREIGN KEY (user_id) REFERENCES users(id)
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
     ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
     $sql = "
-    CREATE TABLE IF NOT EXISTS contacts (
+    CREATE TABLE IF NOT EXISTS avatars (
         id INT AUTO_INCREMENT PRIMARY KEY,
         contact_id INT,
         path VARCHAR(200),
-        FOREIGN KEY (contact_id) REFERENCES contacts(id)
+        FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
     );
     ";
     $stmt = $pdo->prepare($sql);

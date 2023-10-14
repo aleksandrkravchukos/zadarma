@@ -1,14 +1,15 @@
 'use strict';
 
 function validateLogin(login) {
+  $('#username_error').val();
   var errors = [];
   var valid = false;
   e.preventDefault();
   var regex = /^[A-Za-z0-9]+$/;
   if (login.length > 16) {
-    errors.push('Login should be no more than 16 characters.');
+    $('#username_error').html('Login should be no more than 16 characters.');
   } else if (!regex.test(login)) {
-    errors.push('Login should only contain Latin letters and numbers.');
+    $('#username_error').html('Login should only contain Latin letters and numbers.');
   } else {
     valid = true;
   }
@@ -42,5 +43,3 @@ function validateEmail(value) {
     return false;
   }
 }
-
-

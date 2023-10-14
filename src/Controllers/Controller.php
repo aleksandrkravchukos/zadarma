@@ -23,4 +23,9 @@ class Controller
     {
         return __DIR__ . '/../Views/';
     }
+
+    public function __destruct()
+    {
+        $this->pdo = null;
+    }
 }

@@ -13,6 +13,9 @@ $routes = [
         'GET' => ['controller' => 'FrontController', 'action' => 'register'],
         'POST' => ['controller' => 'AuthController', 'action' => 'processRegistration']
     ],
+    '/registered' => [
+        'GET' => ['controller' => 'FrontController', 'action' => 'registered'],
+    ],
     '/contacts' => [
         'GET' =>
             [

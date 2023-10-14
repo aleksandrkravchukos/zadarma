@@ -8,6 +8,7 @@ class FrontController extends Controller
             include $this->getViewPath() . 'dashboard.php';
             exit;
         } else {
+            $login = '';
             include $this->getViewPath() . 'index.php';
         }
     }
@@ -15,5 +16,10 @@ class FrontController extends Controller
     public function register()
     {
         include $this->getViewPath().'register.php';
+    }
+
+    public function registered()
+    {
+        include $this->getViewPath().'registered.php';
     }
 }

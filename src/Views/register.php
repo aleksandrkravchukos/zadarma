@@ -12,7 +12,6 @@ include_once 'header.php';
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-3">
-
             <div class="list-group">
             </div>
         </div>
@@ -24,7 +23,8 @@ include_once 'header.php';
                 <div class="mb-3 row">
                     <label for="username" class="col-sm-4 col-form-label">Login</label>
                     <div class="col-sm-7">
-                        <input name="username" type="text" class="form-control" id="username">
+                        <input onblur="validateLogin(this.val())" name="username" type="text" class="form-control" id="username" maxlength="16">
+                        <div id="username_error"></div>
                     </div>
                 </div>
 
