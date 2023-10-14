@@ -9,8 +9,8 @@ if (!isset($_SESSION['user'])) {
             <input placeholder="Email" class="form-control" type="email" name="email" required>
             <label class="col-form-label" for="password">Password</label>
             <input placeholder="Password" class="form-control" type="password" name="password" required>
-            <button style="margin-top: 20px;" class="btn btn-success" type="submit">Sign in</button>
             <a href="/register" style="margin-top: 20px;" class="btn btn-primary float-right">Sign up</a>
+            <button style="margin-top: 20px;" class="btn btn-success" type="submit">Sign in</button>
         </form>
     </div>
     <?php

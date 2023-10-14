@@ -17,43 +17,19 @@ $routes = [
         'GET' => ['controller' => 'FrontController', 'action' => 'registered'],
     ],
     '/contacts' => [
-        'GET' =>
-            [
-                'controller' => 'PhoneBookController',
-                'action' => 'contactsView'
-            ],
-        'POST' =>
-            [
-                'controller' => 'PhoneBookController',
-                'action' => 'listContacts'
-            ],
+        'GET' => ['controller' => 'PhoneBookController', 'action' => 'contactsView'],
+        'POST' => ['controller' => 'PhoneBookController', 'action' => 'listContacts'],
     ],
     '/contact' => [
-        'POST' =>
-            [
-                'controller' => 'PhoneBookController',
-                'action' => 'contact'
-            ]
+        'POST' => ['controller' => 'PhoneBookController', 'action' => 'contact']
     ],
     '/contact/add' => [
-        'POST' =>
-            [
-                'controller' => 'PhoneBookController',
-                'action' => 'addContact'
-            ]
+        'POST' => ['controller' => 'PhoneBookController', 'action' => 'addContact']
     ],
     '/contact/update' => [
-        'POST' =>
-            [
-                'controller' => 'PhoneBookController',
-                'action' => 'updateContact'
-            ]
+        'POST' => ['controller' => 'PhoneBookController', 'action' => 'updateContact']
     ],
     '/contact/delete' => [
-        'POST' =>
-            [
-                'controller' => 'PhoneBookController',
-                'action' => 'deleteContact'
-            ]
+        'POST' => ['controller' => 'PhoneBookController', 'action' => 'deleteContact']
     ],
 ];

@@ -59,12 +59,8 @@ include_once 'header.php';
                     echo '<a href="/" class="btn btn-primary" style="margin-top: 20px;" type="submit">Login</a>';
                 }
                 ?>
-
-
             </form>
-
         </div>
-
         <div class="col-md-6">
         </div>
     </div>

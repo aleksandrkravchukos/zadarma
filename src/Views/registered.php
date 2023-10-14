@@ -21,7 +21,6 @@ include_once 'header.php';
             echo '<h2>Please, check your email</h2><br>';
             include "auth.php";
             ?>
-
         </div>
 
         <div class="col-md-2">
