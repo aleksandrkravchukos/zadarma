@@ -92,12 +92,14 @@ class Contact
         $uploadDir = __DIR__ . '/../../public' . $publicPath;
         if (isset($files["image"])) {
             $fileName = basename($files["image"]["name"]);
-            $uploadFile = $uploadDir . $fileName;
+            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+            $fileTime  = time().'.'.$extension;
+            $uploadFile = $uploadDir . $fileTime;
             if (move_uploaded_file($files["image"]["tmp_name"], $uploadFile)) {
                 echo "Image uploaded successfully!";
                 $sql = "INSERT INTO `avatars` (`contact_id`, `path`) VALUES (?, ?)";
                 $query = $this->pdo->getPDO()->prepare($sql);
-                $query->execute([$contactId, $publicPath . $fileName]);
+                $query->execute([$contactId, $publicPath . $fileTime]);
 
                 return $uploadFile;
             } else {

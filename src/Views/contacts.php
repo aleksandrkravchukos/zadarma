@@ -143,6 +143,10 @@ include_once 'scripts.php';
                     </form>
 
                 </div>
+                <div class="col-md-12">
+                    <div id="contact_image">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -192,7 +196,7 @@ include_once 'scripts.php';
         if (item.image === '') {
           row.innerHTML = '<td><button onclick="contactId = ' + item.id + ';" id=' + item.id + ' type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Upload Image</button></td>';
         } else {
-          row.innerHTML = '<td>' + '<img width="70px;" src="' +item.image + '"></td>';
+          row.innerHTML = '<td>' + '<img width="70px;" src="' + item.image + '"></td>';
         }
         row.innerHTML += `<td><button class="btn btn-info contactModalButton" onclick="getContact(` + item.id + `)">${item.name}</button> </td><td>${item.last_name}</td><td>${item.phone}</td><td>${item.email}</td><td><button onclick="deleteContact(` + item.id + `)" class="btn btn-danger">Delete<i class="fas fa-trash"></i></button></td>`;
         tbody.appendChild(row);
@@ -214,6 +218,11 @@ include_once 'scripts.php';
       $('#phoneView').val(response.phone)
       $('#emailView').val(response.email)
       $('#contact_id').val(id)
+      if(response.image !== false) {
+        $('#contact_image').html('<img width="435" src=' + response.image.path + '>')
+      }else{
+        $('#contact_image').html('You can upload avatar after creating contact');
+      }
     })
       .fail(function (error) {
         console.log(error);
