@@ -40,4 +40,11 @@ class PhoneBookController extends Controller
     {
         echo $this->model->deleteContact();
     }
+
+    public function processUploadedFile($files, $contactId): string
+    {
+        return $this->model->uploadImage($files, $contactId);
+
+
+    }
 }

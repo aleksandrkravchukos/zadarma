@@ -24,6 +24,7 @@ include_once 'header.php';
 
             <table id="myTable" class="table text-justify table-striped">
                 <thead class="tableh1">
+                <th class="">Image</th>
                 <th class="">Name</th>
                 <th class="">Last name</th>
                 <th class="">Phone</th>
@@ -79,7 +80,8 @@ include_once 'scripts.php';
                         <div class="mb-3 row">
                             <label for="email" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input onblur="validateEmail(this.value)" placeholder="Type email" type="email" class="form-control" id="email">
+                                <input onblur="validateEmail(this.value)" placeholder="Type email" type="email"
+                                       class="form-control" id="email">
                                 <div id="email_error"></div>
                             </div>
                         </div>
@@ -134,7 +136,8 @@ include_once 'scripts.php';
                         <div class="mb-3 row">
                             <label for="email" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="emailView">
+                                <input onblur="validateEmail(this.value)" type="email" class="form-control"
+                                       id="emailView">
                             </div>
                         </div>
                     </form>
@@ -149,8 +152,32 @@ include_once 'scripts.php';
     </div>
 </div>
 
+<div style="color: black" class="modal fade" id="imageModal" tabindex="-1" role="dialog"
+     aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Upload Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="imageUpload" accept=".jpg, .jpeg, .png"/>
+                <form id="imageUploadForm" enctype="multipart/form-data">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="uploadButton">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
+  var contactId = 0;
+
   function getContacts() {
     let postData = {
       userId: "<?=$_SESSION['user']['id']?>"
@@ -162,7 +189,12 @@ include_once 'scripts.php';
       const tbody = table.querySelector('tbody');
       response.forEach(item => {
         const row = document.createElement('tr');
-        row.innerHTML = `<td><button class="btn btn-info contactModalButton" onclick="getContact(` + item.id + `)">${item.name}</button> </td><td>${item.last_name}</td><td>${item.phone}</td><td>${item.email}</td><td><button onclick="deleteContact(` + item.id + `)" class="btn btn-danger">Delete<i class="fas fa-trash"></i></button></td>`;
+        if (item.image === '') {
+          row.innerHTML = '<td><button onclick="contactId = ' + item.id + ';" id=' + item.id + ' type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Upload Image</button></td>';
+        } else {
+          row.innerHTML = '<td>' + '<img width="70px;" src="' +item.image + '"></td>';
+        }
+        row.innerHTML += `<td><button class="btn btn-info contactModalButton" onclick="getContact(` + item.id + `)">${item.name}</button> </td><td>${item.last_name}</td><td>${item.phone}</td><td>${item.email}</td><td><button onclick="deleteContact(` + item.id + `)" class="btn btn-danger">Delete<i class="fas fa-trash"></i></button></td>`;
         tbody.appendChild(row);
       });
 
@@ -241,6 +273,31 @@ include_once 'scripts.php';
 
   document.getElementById('openModalButton').addEventListener('click', function () {
     $('#myModal').modal('show');
+  });
+
+  $("#uploadButton").on("click", function () {
+    let fileInput = $("#imageUpload")[0];
+    if (fileInput.files.length > 0) {
+      let formData = new FormData();
+      formData.append("image", fileInput.files[0]);
+      formData.append("contactId", contactId);
+      $.ajax({
+        url: "/upload.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          alert("Image uploaded successfully!");
+          getContacts();
+          $("#imageModal").modal("hide");
+        },
+        error: function (data) {
+          console.log(data);
+          alert("An error occurred during image upload.");
+        }
+      });
+    }
   });
 
   getContacts();

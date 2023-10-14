@@ -23,16 +23,40 @@ class Contact
 
     public function getContacts(int $userId): array
     {
+//        echo 'test';
+//        exit();
         $query = $this->pdo->getPDO()->prepare("SELECT * FROM contacts WHERE user_id = ? ORDER BY id desc");
         $query->execute([$userId]);
-        return $query->fetchAll(PDO::FETCH_ASSOC);;
+        $contacts = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($contacts as &$contact) {
+            $avatar = $this->getAvatar($contact['id']);
+            $contact['image'] = '';
+            if ($avatar) {
+                $contact['image'] = $avatar['path'];
+            }
+        }
+        return $contacts;
+    }
+
+    public function getAvatar(int $contactId)
+    {
+        $query = $this->pdo->getPDO()->prepare("SELECT path FROM avatars WHERE contact_id = ?");
+        $query->execute([$contactId]);
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getContact(int $userId, int $contactId): array
     {
         $query = $this->pdo->getPDO()->prepare("SELECT * FROM contacts WHERE user_id = ? and id = ? ORDER BY id desc");
         $query->execute([$userId, $contactId]);
-        return $query->fetch(PDO::FETCH_ASSOC);
+
+        $contact = $query->fetch(PDO::FETCH_ASSOC);
+        $contact['image'] = '';
+        if ($contact) {
+            $contact['image'] = $this->getAvatar($contact['id']);
+        }
+
+        return $contact;
     }
 
     public function updateContact()
@@ -60,6 +84,27 @@ class Contact
         $query = $this->pdo->getPDO()->prepare("DELETE FROM contacts WHERE id = ?");
         $query->execute([$_POST['contactId']]);
         return $query->fetch(PDO::FETCH_ASSOC);
+    }
 
+    public function uploadImage($files, $contactId): string
+    {
+        $publicPath = '/upload/';
+        $uploadDir = __DIR__ . '/../../public' . $publicPath;
+        if (isset($files["image"])) {
+            $fileName = basename($files["image"]["name"]);
+            $uploadFile = $uploadDir . $fileName;
+            if (move_uploaded_file($files["image"]["tmp_name"], $uploadFile)) {
+                echo "Image uploaded successfully!";
+                $sql = "INSERT INTO `avatars` (`contact_id`, `path`) VALUES (?, ?)";
+                $query = $this->pdo->getPDO()->prepare($sql);
+                $query->execute([$contactId, $publicPath . $fileName]);
+
+                return $uploadFile;
+            } else {
+                echo "An error occurred during image upload.";
+            }
+        }
+
+        return '';
     }
 }
