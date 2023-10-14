@@ -8,7 +8,6 @@ class FrontController extends Controller
             include $this->getViewPath() . 'dashboard.php';
             exit;
         } else {
-            $login = '';
             include $this->getViewPath() . 'index.php';
         }
     }

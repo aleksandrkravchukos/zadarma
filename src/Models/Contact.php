@@ -1,8 +1,6 @@
 <?php
 
-use JetBrains\PhpStorm\Pure;
-
-class PhoneBook
+class Contact
 {
 
     private PdoConnection $pdo;

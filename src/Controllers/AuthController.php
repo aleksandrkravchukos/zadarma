@@ -36,7 +36,7 @@ class AuthController extends Controller
                 $query->execute([$_POST['username'], $_POST['email'], $hashedPassword]);
                 $query->fetch();
                 sleep(2); // TODO: send verification email algorithm.
-                $this->redirect('/registered'); // model if user accept email link
+                $this->redirect('/registered'); // the model if user accept email link
             } catch (\Exception $exception) {
                 $this->redirect('/');
             }
