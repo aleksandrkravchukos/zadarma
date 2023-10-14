@@ -257,7 +257,11 @@ include_once 'scripts.php';
     });
     $.post('/contact/add', formData, function (response) {
       getContacts();
-      alert('Contact added');
+      Swal.fire(
+        'Good job!',
+        'Contact added!',
+        'success'
+      );
       $('#myModal').modal('hide');
     })
       .fail(function (error) {
@@ -275,8 +279,14 @@ include_once 'scripts.php';
     });
     formData['id'] = id;
     $.post('/contact/update', formData, function (response) {
-      //alert('Contact was updated');
       getContacts();
+
+      Swal.fire(
+        'Good job!',
+        'The contact was updated!',
+        'success'
+      )
+
       $('#contactModal').modal('hide');
     })
       .fail(function (error) {
@@ -289,6 +299,13 @@ include_once 'scripts.php';
     if (userInput == 'DELETE') {
       $.post('/contact/delete', {contactId: id}, function (response) {
         getContacts();
+
+        Swal.fire(
+          'Good job!',
+          'The contact was deleted!',
+          'success'
+        )
+
       })
         .fail(function (error) {
           console.log(error);
