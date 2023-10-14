@@ -3,11 +3,9 @@
 function validateLogin(login) {
   var regex = /^[A-Za-z0-9]{1,16}$/;
   if (regex.test(login)) {
-    console.log('true');
     $('#username_error').html('')
     return true;
   } else {
-    console.log('false');
     $('#username_error').html('Invalid login. Please use Latin letters and digits')
     return false;
   }
@@ -57,11 +55,6 @@ $("#registerForm").submit(function (e) {
     validate = false;
   }
   
-  // console.log('validate = ' + validate);
-  // console.log('password = ' + $('#password').val());
-  // console.log('password2 = ' + $('#password2').val());
-  //
-  // return false;
   if (validate) {
     this.submit();
   } else {

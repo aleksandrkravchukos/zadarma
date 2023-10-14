@@ -79,7 +79,8 @@ include_once 'scripts.php';
                         <div class="mb-3 row">
                             <label for="email" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input placeholder="Type email" type="email" class="form-control" id="email">
+                                <input onblur="validateEmail(this.value)" placeholder="Type email" type="email" class="form-control" id="email">
+                                <div id="email_error"></div>
                             </div>
                         </div>
                     </form>
@@ -176,7 +177,6 @@ include_once 'scripts.php';
 
   function getContact(id) {
     $.post('/contact', {contactId: id}, function (response) {
-      console.log(response)
       $('#nameView').val(response.name)
       $('#last_name_view').val(response.last_name)
       $('#phoneView').val(response.phone)
@@ -196,7 +196,6 @@ include_once 'scripts.php';
       var id = $input.attr('id');
       formData[id] = $input.val();
     });
-    console.log(formData);
     $.post('/contact/add', formData, function (response) {
       getContacts();
       alert('Contact added');
