@@ -44,7 +44,10 @@ class PhoneBookController extends Controller
     public function processUploadedFile($files, $contactId): string
     {
         return $this->model->uploadImage($files, $contactId);
+    }
 
-
+    public function deleteAvatar(): string
+    {
+        return $this->model->deleteAvatar();
     }
 }

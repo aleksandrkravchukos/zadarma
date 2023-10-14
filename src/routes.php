@@ -32,4 +32,7 @@ $routes = [
     '/contact/delete' => [
         'POST' => ['controller' => 'PhoneBookController', 'action' => 'deleteContact']
     ],
+    '/avatar/delete' => [
+        'POST' => ['controller' => 'PhoneBookController', 'action' => 'deleteAvatar']
+    ],
 ];

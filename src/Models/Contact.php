@@ -93,7 +93,7 @@ class Contact
         if (isset($files["image"])) {
             $fileName = basename($files["image"]["name"]);
             $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-            $fileTime  = time().'.'.$extension;
+            $fileTime = time() . '.' . $extension;
             $uploadFile = $uploadDir . $fileTime;
             if (move_uploaded_file($files["image"]["tmp_name"], $uploadFile)) {
                 echo "Image uploaded successfully!";
@@ -108,5 +108,13 @@ class Contact
         }
 
         return '';
+    }
+
+    public function deleteAvatar()
+    {
+        $query = $this->pdo->getPDO()->prepare("DELETE FROM avatars WHERE contact_id = ?");
+        $query->execute([$_POST['avatarId']]);
+
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 }
