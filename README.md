@@ -37,12 +37,18 @@ Upload PHP file archives and database dump. Please describe the specific details
 mind the launch (as it is). Tell me how many hours you spent on this task
 
 ## Install 
+
+
 You may be sure that Docker desktop was installed in your system
     
+    git clone https://github.com/aleksandrkravchukos/zadarma.git
+    cd zadarma
     docker-compose up --build -d
     cp env.txt src/.env
 
 Go to http://localhost/install.php and then you need delete this file in public folder
+
+Make sure that public/upload/ folder is writable
 
 # Test
 
