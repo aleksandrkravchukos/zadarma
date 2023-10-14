@@ -239,12 +239,15 @@ include_once 'scripts.php';
     $.post('/avatar/delete', {avatarId: contactId}, function (response) {
       $('#contact_image').html(notImage);
       getContacts();
-      alert('Image deleted');
+      Swal.fire(
+        'Good job!',
+        'Image deleted',
+        'success'
+      )
     })
       .fail(function (error) {
         alert(error);
       });
-
   }
 
   function addContact() {
@@ -332,8 +335,13 @@ include_once 'scripts.php';
         contentType: false,
         processData: false,
         success: function (response) {
-          alert("Image uploaded successfully!");
           getContacts();
+          Swal.fire(
+            'Good job!',
+            'Image uploaded successfully!',
+            'success'
+          )
+
           $("#imageModal").modal("hide");
         },
         error: function (data) {
@@ -347,5 +355,4 @@ include_once 'scripts.php';
   getContacts();
 </script>
 </body>
-
 </html>
