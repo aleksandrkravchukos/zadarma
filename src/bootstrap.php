@@ -12,8 +12,12 @@ if (file_exists($envFile)) {
             putenv("$key=$value");
         }
     }
+    require 'Autoloader.php';
+} else {
+    echo ".env file doesn't exist";
+    exit();
 }
 
-require 'Autoloader.php';
+
 
 
