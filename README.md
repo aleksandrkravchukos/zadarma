@@ -1,5 +1,7 @@
 ## Zadarma test task. Back-end
 
+# Docker / PHP 8.1 / Apache2 / Mysql 5.7
+
 PHP, MySQL, AJAX
 It is necessary to develop the "Phone Book" website. 
 User, after registration and authorization,
@@ -31,7 +33,7 @@ use PHP frameworks and libraries. To save data - MySQL / MariaDB /
 Percona server. For front-end you can use wiki - Vanilla JS, jQuery, Vue.js. For layout
 You can use frameworks (Bootstrap, Bulma, etc.).
 I would like to learn more about: form validation, PDO implementation, template implementation (MVC, Front
-controller then). The external appearance is not evaluated, but the logic of the interfaces is lost.
+controller etc.). The external appearance is not evaluated, but interfaces logic is welcome.
 # Result
 Upload PHP file archives and database dump. Please describe the specific details of the supporting document.
 mind the launch (as it is). Tell me how many hours you spent on this task
@@ -46,18 +48,18 @@ You may be sure that Docker desktop was installed in your system
     docker-compose up --build -d
     cp env.txt src/.env
 
-Go to http://localhost/install.php and then you need delete this file in public folder
+Go to http://localhost/install.php, and then you need delete this file in public folder
+
+After this you can log in with email "admin@admin.com" and password "1"
 
 Make sure that public/upload/ folder is writable
 
 # Test
 
-Go to http://localhost and try to test
-
-After this you can login with email "admin@admin.com" and password "1"
+Go to http://localhost and try to test functionality
 
 Here is Adminer http://localhost:8081/
 - login:root
 - pass:test
 
-
+The app was tested on macOS Ventura with docker desktop 4.24.2.
