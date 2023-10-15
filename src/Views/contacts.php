@@ -324,6 +324,28 @@ include_once 'scripts.php';
 
   $("#uploadButton").on("click", function () {
     let fileInput = $("#imageUpload")[0];
+    const maxSize = 5 * 1024 * 1024;
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    
+    var file = fileInput.files[0];
+    if (allowedTypes.indexOf(file.type) === -1) {
+      Swal.fire(
+        'Error!',
+        'Only JPEG and PNG images are allowed.',
+        'warning'
+      );
+      return;
+    }
+
+    if (file.size > maxSize) {
+      Swal.fire(
+        'Error!',
+        'File size exceeds the 5 MB limit.',
+        'warning'
+      );
+      return;
+    }
+
     if (fileInput.files.length > 0) {
       let formData = new FormData();
       formData.append("image", fileInput.files[0]);
@@ -340,7 +362,7 @@ include_once 'scripts.php';
             'Good job!',
             'Image uploaded successfully!',
             'success'
-          )
+          );
 
           $("#imageModal").modal("hide");
         },
