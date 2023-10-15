@@ -47,7 +47,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (1,	'user',	'admin@admin.com',	'6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b'),
 (7,	'test',	'test@gmail.com',	'6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b'),
-(8,	'dfghj!!',	'qqq@gmail.com',	'd5ce2b19fbda14a25deac948154722f33efd37b369a32be8f03ec2be8ef7d3a5'),
+(8,	'dfghj',	'qqq@gmail.com',	'd5ce2b19fbda14a25deac948154722f33efd37b369a32be8f03ec2be8ef7d3a5'),
 (9,	'gfhvjbknl',	'fghj@gmail.com',	'6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b'),
 (12,	'fdghjk',	'testtt@gmail.com',	'61ae1cdc98f88384be4a18af84c4114a5ddff21f0d176b40f8d53e530c3e9c88'),
 (13,	'yetytutyiuiklj',	'rrrrrr@gmail.com',	'61ae1cdc98f88384be4a18af84c4114a5ddff21f0d176b40f8d53e530c3e9c88'),
