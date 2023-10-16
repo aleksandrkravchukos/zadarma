@@ -253,18 +253,27 @@ include_once 'scripts.php';
   function addContact() {
     var $form = $('#addContact');
     var formData = {};
+    var error = false;
     $form.find('input').each(function () {
       var $input = $(this);
       var id = $input.attr('id');
+      if ($input.val() == '') {
+        error = true;
+      }
       formData[id] = $input.val();
     });
+
+    if (error) {
+      Swal.fire(
+        'Error',
+        'All inputs must be filled!',
+        'error'
+      );
+      return false;
+    }
+
     $.post('/contact/add', formData, function (response) {
       getContacts();
-      Swal.fire(
-        'Good job!',
-        'Contact added!',
-        'success'
-      );
       $('#myModal').modal('hide');
     })
       .fail(function (error) {
