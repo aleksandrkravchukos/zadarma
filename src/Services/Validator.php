@@ -10,8 +10,8 @@ class Validator
         $errors = [];
         $userName = $postData['name'];
         $lastName = $postData['last_name'];
+        $phone = $postData['phone'];
         $email = $postData['email'];
-
 
         if (empty($userName)) {
             $errors['username'] = 'Username is required';
@@ -36,12 +36,12 @@ class Validator
     #[ArrayShape(['valid' => "bool", 'errors' => "array"])] public function validateUserData($postData): array
     {
         $errors = [];
-        $login = $postData['login'];
+        $login = $postData['username'];
         $email = $postData['email'];
         $password = $postData['password'];
 
         if (empty($login)) {
-            $errors['login'] = 'Login is required';
+            $errors['username'] = 'Login is required';
         }
 
         if (empty($password)) {
