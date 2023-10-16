@@ -33,21 +33,33 @@ class PhoneBookController extends Controller
 
     public function addContact()
     {
-        $result = $this->model->addContact($_POST);
-        header('Content-Type: application/json');
-        echo $result;
+        try {
+            $result = $this->model->addContact($_POST);
+            header('Content-Type: application/json');
+            echo $result;
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+        }
     }
 
     public function updateContact()
     {
-        $result = json_encode($this->model->updateContact());
-        header('Content-Type: application/json');
-        echo $result;
+        try {
+            $result = json_encode($this->model->updateContact());
+            header('Content-Type: application/json');
+            echo $result;
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+        }
     }
 
     public function deleteContact()
     {
-        echo $this->model->deleteContact();
+        try {
+            echo $this->model->deleteContact();
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+        }
     }
 
     public function processUploadedFile($files, $contactId): string
@@ -55,8 +67,17 @@ class PhoneBookController extends Controller
         return $this->model->uploadImage($files, $contactId);
     }
 
+    /**
+     * Delete contact avatar.
+     *
+     * @return string
+     */
     public function deleteAvatar(): string
     {
-        return $this->model->deleteAvatar();
+        try {
+            return $this->model->deleteAvatar();
+        } catch (Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 }
