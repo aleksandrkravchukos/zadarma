@@ -239,11 +239,7 @@ include_once 'scripts.php';
     $.post('/avatar/delete', {avatarId: contactId}, function (response) {
       $('#contact_image').html(notImage);
       getContacts();
-      Swal.fire(
-        'Good job!',
-        'Image deleted',
-        'success'
-      )
+      Swal.fire('Good job!', 'Image deleted', 'success')
     })
       .fail(function (error) {
         alert(error);
@@ -264,11 +260,7 @@ include_once 'scripts.php';
     });
 
     if (error) {
-      Swal.fire(
-        'Error',
-        'All inputs must be filled!',
-        'error'
-      );
+      Swal.fire('Error', 'All inputs must be filled!', 'error');
       return false;
     }
 
@@ -292,13 +284,7 @@ include_once 'scripts.php';
     formData['id'] = id;
     $.post('/contact/update', formData, function (response) {
       getContacts();
-
-      Swal.fire(
-        'Good job!',
-        'The contact was updated!',
-        'success'
-      )
-
+      Swal.fire('Good job!', 'The contact was updated!', 'success')
       $('#contactModal').modal('hide');
     })
       .fail(function (error) {
@@ -311,19 +297,13 @@ include_once 'scripts.php';
     if (userInput == 'DELETE') {
       $.post('/contact/delete', {contactId: id}, function (response) {
         getContacts();
-
-        Swal.fire(
-          'Good job!',
-          'The contact was deleted!',
-          'success'
-        )
-
+        Swal.fire('Good job!', 'The contact was deleted!', 'success')
       })
         .fail(function (error) {
           console.log(error);
         });
     } else {
-      alert('You clicked Cancel or typed incorrect answer for the prompt.');
+      Swal.fire('Error!', 'You clicked Cancel or typed incorrect answer for the prompt.', 'warning');
     }
   }
 
@@ -339,20 +319,12 @@ include_once 'scripts.php';
     let file = fileInput.files[0];
 
     if (allowedTypes.indexOf(file.type) === -1) {
-      Swal.fire(
-        'Error!',
-        'Only JPEG and PNG images are allowed.',
-        'warning'
-      );
+      Swal.fire('Error!', 'Only JPEG and PNG images are allowed.', 'warning');
       return;
     }
 
     if (file.size > maxSize) {
-      Swal.fire(
-        'Error!',
-        'File size exceeds the 5 MB limit.',
-        'warning'
-      );
+      Swal.fire('Error!', 'File size exceeds the 5 MB limit.', 'warning');
       return;
     }
 
@@ -368,12 +340,7 @@ include_once 'scripts.php';
         processData: false,
         success: function (response) {
           getContacts();
-          Swal.fire(
-            'Good job!',
-            'Image uploaded successfully!',
-            'success'
-          );
-
+          Swal.fire('Good job!', 'Image uploaded successfully!', 'success');
           $("#imageModal").modal("hide");
         },
         error: function (data) {
