@@ -9,6 +9,6 @@ class View
 
     public function getViewPath(): string
     {
-        return __DIR__ . '/../resources/';
+        return __DIR__ . '/../resources/views/';
     }
 }
