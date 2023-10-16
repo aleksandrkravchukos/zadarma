@@ -7,6 +7,8 @@ class Contact
 
     public function __construct()
     {
+        //TODO: create injected connection class.
+
         $this->pdo = new PdoConnection();
     }
 
