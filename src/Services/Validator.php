@@ -27,6 +27,8 @@ class Validator
             $errors['email'] = 'Invalid or missing email';
         }
 
+        //TODO: create another validation rules(need some time for this).
+
         return [
             'valid' => empty($errors),
             'errors' => $errors,
