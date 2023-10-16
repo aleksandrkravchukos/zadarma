@@ -13,6 +13,7 @@ if (file_exists($envFile)) {
         }
     }
     require 'Autoloader.php';
+    Autoloader::register();
 } else {
     echo ".env file doesn't exist";
     exit();

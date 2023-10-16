@@ -2,10 +2,29 @@
 
 class PdoConnection
 {
-    protected string $host;
-    protected string $dbname;
-    protected string $username;
-    protected string $password;
+    /**
+     * @var string|array|false
+     */
+    protected string|bool|array $host;
+
+    /**
+     * @var string|array|false
+     */
+    protected string|bool|array $dbname;
+
+    /**
+     * @var string|array|false
+     */
+    protected string|bool|array $username;
+
+    /**
+     * @var string|array|false
+     */
+    protected string|bool|array $password;
+
+    /**
+     * @var PDO|null
+     */
     protected ?PDO $pdo = null;
 
     public function __construct()
@@ -16,6 +35,11 @@ class PdoConnection
         $this->password = getenv('DB_PASS');
     }
 
+    /**
+     * Get PDO connection.
+     *
+     * @return PDO
+     */
     public function getPDO(): PDO
     {
         try {

@@ -19,6 +19,9 @@ class Controller
 
     public function __construct()
     {
+        //TODO: need create dependency injection Services, Models, Repositories etc
+        // with autowired for SOLID principles.
+
         session_start();
         $pdo = new PdoConnection();
         $this->pdo = $pdo->getPDO();
