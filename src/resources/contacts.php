@@ -323,11 +323,12 @@ include_once 'scripts.php';
   });
 
   $("#uploadButton").on("click", function () {
-    let fileInput = $("#imageUpload")[0];
     const maxSize = 5 * 1024 * 1024;
     const allowedTypes = ['image/jpeg', 'image/png'];
-    
-    var file = fileInput.files[0];
+
+    let fileInput = $("#imageUpload")[0];
+    let file = fileInput.files[0];
+
     if (allowedTypes.indexOf(file.type) === -1) {
       Swal.fire(
         'Error!',

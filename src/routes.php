@@ -2,7 +2,7 @@
 
 $routes = [
     '/' => ['GET' => ['controller' => 'FrontController', 'action' => 'index']],
-    '/dashboard' => ['GET' => ['controller' => 'DashBoardController', 'action' => 'index']],
+    '/dashboard' => ['GET' => ['controller' => 'FrontController', 'action' => 'index']],
     '/login' => [
         'POST' => ['controller' => 'AuthController', 'action' => 'processLogin']
     ],

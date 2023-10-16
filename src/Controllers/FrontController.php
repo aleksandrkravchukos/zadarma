@@ -2,23 +2,32 @@
 
 class FrontController extends Controller
 {
+    /**
+     * Show index html or user dashboard.
+     */
     public function index()
     {
         if (isset($_SESSION['user'])) {
-            include $this->getViewPath() . 'dashboard.php';
+            include $this->view->render('dashboard');
             exit;
         } else {
-            include $this->getViewPath() . 'index.php';
+            include $this->view->render('index');
         }
     }
 
+    /**
+     * Show html register form.
+     */
     public function register()
     {
-        include $this->getViewPath().'register.php';
+        include $this->view->render('register');
     }
 
+    /**
+     * Show html after user registered.
+     */
     public function registered()
     {
-        include $this->getViewPath().'registered.php';
+        include $this->view->render('registered');
     }
 }
