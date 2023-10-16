@@ -30,15 +30,21 @@ class AuthController extends Controller
     public function processRegistration()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            try {
-                $hashedPassword = hash('sha256', $_POST['password']);
-                $query = $this->pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-                $query->execute([$_POST['username'], $_POST['email'], $hashedPassword]);
-                $query->fetch();
-                sleep(2); // TODO: send verification email algorithm.
-                $this->redirect('/registered'); // the model if user accept email link
-            } catch (\Exception $exception) {
-                $this->redirect('/');
+            $valid = $this->validator->validateUserData($_POST);
+            if ($valid['valid']) {
+                try {
+                    $hashedPassword = hash('sha256', $_POST['password']);
+                    $query = $this->pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+                    $query->execute([$_POST['username'], $_POST['email'], $hashedPassword]);
+                    $query->fetch();
+                    sleep(2); // TODO: send verification email algorithm.
+                    $this->redirect('/registered'); // the model if user accept email link
+                } catch (\Exception $exception) {
+                    $this->redirect('/');
+                }
+            } else {
+                //TODO: create flash errors data and redirect to current page.
+                echo 'Data is not valid';
             }
         }
     }

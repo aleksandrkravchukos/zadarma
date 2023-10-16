@@ -33,12 +33,18 @@ class PhoneBookController extends Controller
 
     public function addContact()
     {
-        try {
-            $result = $this->model->addContact($_POST);
-            header('Content-Type: application/json');
-            echo $result;
-        } catch (Exception $exception) {
-            echo $exception->getMessage();
+        $valid = $this->validator->validateContactData($_POST);
+
+        if ($valid['valid']) {
+            try {
+                $result = $this->model->addContact($_POST);
+                header('Content-Type: application/json');
+                echo $result;
+            } catch (Exception $exception) {
+                echo $exception->getMessage();
+            }
+        } else {
+            echo 'Data is not valid';
         }
     }
 

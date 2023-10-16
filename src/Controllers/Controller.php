@@ -12,6 +12,8 @@ class Controller
      */
     protected Contact $model;
 
+    protected Validator $validator;
+
     /**
      * @var View
      */
@@ -27,6 +29,7 @@ class Controller
         $this->pdo = $pdo->getPDO();
         $this->model = new Contact();
         $this->view = new View();
+        $this->validator = new Validator();
     }
 
     /**

@@ -8,6 +8,7 @@ require_once __DIR__ . '/Controllers/PhoneBookController.php';
 require_once __DIR__ . '/Models/Contact.php';
 require_once __DIR__ . '/Views/View.php';
 require_once __DIR__ . '/PdoConnection.php';
+require_once __DIR__ . '/Services/Validator.php';
 
 class Router
 {
